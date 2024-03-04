@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "kind": "user",
+      "name": "Charley Darwin",
+      "email": "charleydarwin@email.com",
+      "key": "charleydarwin",
+      "tier": "Free"
+    },
+    {
+      "kind": "user",
+      "name": "Alex Bell",
+      "email": "alexbell@email.com",
+      "key": "alexbell",
+      "tier": "Business"
+    },
+    {
+      "kind": "user",
+      "name": "Leo da Vinci",
+      "email": "leodavinci@email.com",
+      "key": "leodavinci",
+      "tier": "Premium"
+    },
+    {
+      "kind": "user",
+      "name": "Timmy Edison",
+      "email": "timmyedison@email.com",
+      "key": "timmyedison",
+      "tier": "Premium"
+    }
+  ]
+}

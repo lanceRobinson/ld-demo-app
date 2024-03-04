@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Application Access Tiers Demo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a demo app for using LaunchDarkly flags to grant user access for different subscription tiers
 
-## Available Scripts
+## Setup and Deploy Instructions
 
-In the project directory, you can run:
+### LaunchDarkly setup
+1) Start a Launchdarkly free trial account
+2) create the following three flags
 
-### `npm start`
+![image](readme-images/flags.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+with the following settings for all three
+![image](readme-images/flag-setup.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Be sure to check "SDKs using Client-side ID" on each of them
 
-### `npm test`
+![image](readme-images/sdk-checkbox.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3) Add the following Segments
 
-### `npm run build`
+![img.png](readme-images/segments.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![img.png](readme-images/business-segment.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![img_1.png](readme-images/premium-segment.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4) Back to the Feature Flags - Configure targeting for order-access and dashboard-access
 
-### `npm run eject`
+![img.png](readme-images/dashboard-targeting.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![img.png](readme-images/order-targeting.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone the repo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd ld-demo-app
+npm install
+```
+Make a copy of .env.example to .env.local.  
+Get your Client-side ID from LaunchDarkly and populate REACT_APP_LD_CLIENT_ID in env file.
 
-## Learn More
+Account Settings | Projects | [Project] | Environments
+![img_1.png](readme-images/ld-settings.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage
 
-### Code Splitting
+Four static users have been added for demo purposes.  These can be found in the src/demo_data.json
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Application Access
+- Home & Products - All users can access these
+- Orders - Business and Premium users can access this page
+- Dashboard - only Premium users can access this page
+- AI - This is a beta feature that hasn't been released yet.  
+Allow access to this page using the Launchdarkly UI by toggling the New AI Feature in the Launchdarkly dashboard.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+When the app initializes, the context is set with a default user on a Free Tier.
+CHANGE USER on the right side of the nav bar can be used to change between different users.
+This uses ldClient.identify() to change the context of the app to a different user.
+This will also add new context in Launchdarkly that do not already exist.
+As you change between users, access to the pages will change, and additional context users should appear in your Launchdarkly dashboard.
 
-### Making a Progressive Web App
+![img.png](readme-images/context-ui.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[MIT](https://choosealicense.com/licenses/mit/)
