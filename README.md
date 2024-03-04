@@ -2,6 +2,7 @@
 
 This is a demo app for using LaunchDarkly flags to grant user access for different subscription tiers
 
+A live demo can be found here: https://main--ld-demo-app.netlify.app/
 ## Setup and Deploy Instructions
 
 ### LaunchDarkly setup
