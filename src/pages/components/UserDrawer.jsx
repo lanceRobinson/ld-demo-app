@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import {useLDClient, withLDConsumer} from 'launchdarkly-react-client-sdk';
 
-import demo_data from "./demo_data.json"
+import demo_data from "../../demo_data.json"
 
 const users = demo_data.users
 

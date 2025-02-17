@@ -1,14 +1,14 @@
-// Dashboards.js
+// Analytics.js
 import React from 'react';
 import { withLDConsumer } from 'launchdarkly-react-client-sdk';
 import {Alert} from "@mui/material";
 
 const Dashboards = ({ flags }) => {
-    console.log('flags.dashboardAccess', flags.dashboardAccess)
-    return (flags.dashboardAccess ?
+    console.log('flags.analyticsAccess', flags.analyticsAccess)
+    return (flags.analyticsAccess ?
         <div>
             <h1>Standard Dashboard</h1>
-            <img src="/dashboards.png" alt="dashboards" width={'100%'}/>
+            <img src="/analytics.png" alt="Analytics" width={'100%'}/>
         </div>
         :
             <Alert severity="warning">This feature is only available for Premium members...</Alert>

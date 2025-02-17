@@ -31,5 +31,6 @@ function App() {
 
 export default withLDProvider({
   clientSideID: process.env.REACT_APP_LD_CLIENT_ID,
+    options: { streaming: true },
     context: defaultUser
 })(App);

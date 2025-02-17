@@ -3,7 +3,8 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import {Link, useLocation} from "react-router-dom";
-import UserDrawer from "./UserDrawer";
+import UserDrawer from "./pages/components/UserDrawer";
+import UserSwitcher from "./pages/components/UserSwitcher";
 import {Box,} from "@mui/material";
 import {useLDClient} from 'launchdarkly-react-client-sdk';
 
@@ -70,20 +71,18 @@ const NavBar = ({currUser, setCurrUser}) => {
                         {/*</Button>*/}
                     </Box>
                     <Box>
-                        <typography>
-                            Logged in as: {currUser.name} ({currUser.tier} Tier) |
-                        </typography>
-                        <Button
-                            edge="end"
-                            color="inherit"
-                            aria-label="menu"
-                            onClick={toggleDrawer}
-                            align="right"
-                            setCurrUser={setCurrUser}
+                        <UserSwitcher currUser={currUser} setCurrUser={setCurrUser} />
+                        {/*<Button*/}
+                        {/*    edge="end"*/}
+                        {/*    color="inherit"*/}
+                        {/*    aria-label="menu"*/}
+                        {/*    onClick={toggleDrawer}*/}
+                        {/*    align="right"*/}
+                        {/*    setCurrUser={setCurrUser}*/}
 
-                        >
-                            Change User
-                        </Button>
+                        {/*>*/}
+                        {/*    Change User*/}
+                        {/*</Button>*/}
                     </Box>
                 </Toolbar>
             </AppBar>
