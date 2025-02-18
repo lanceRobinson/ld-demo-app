@@ -1,14 +1,23 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import {Link, useLocation} from "react-router-dom";
-import UserDrawer from "./pages/components/UserDrawer";
+import { Link, useLocation } from "react-router-dom";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import UserSwitcher from "./pages/components/UserSwitcher";
-import {Box,} from "@mui/material";
-import {useLDClient} from 'launchdarkly-react-client-sdk';
+import { Box, IconButton, Typography } from "@mui/material";
+import SettingsIcon from "@mui/icons-material/Settings";
+import SettingsDrawer from "./pages/components/SettingsDrawer";
 
-const NavBar = ({currUser, setCurrUser}) => {
+const tabs = [
+    { route: "/", label: "Dashboard" },
+    { route: "/products", label: "Manage Products" },
+    { route: "/orders", label: "Manage Orders" },
+    { route: "/analytics", label: "Analytics" },
+    { route: "/ai", label: "Beta AI" },
+];
+
+const NavBar = ({ users, setUsers, currUser, setCurrUser, onOpenModal }) => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const location = useLocation();
 
@@ -18,77 +27,58 @@ const NavBar = ({currUser, setCurrUser}) => {
 
     return (
         <React.Fragment>
-            <AppBar position="static">
-                <Toolbar>
-                    <Box sx={{flexGrow: 1}}>
-                        <Button
-                            color="inherit"
-                            component={Link}
-                            to="/"
-                            selected={location.pathname === "/"}
-                        >
-                            Home
-                        </Button>
-                        <Button
-                            color="inherit"
-                            component={Link}
-                            to="/products"
-                            selected={location.pathname === "/products"}
-                        >
-                            Products
-                        </Button>
-                        <Button
-                            color="inherit"
-                            component={Link}
-                            to="/orders"
-                            selected={location.pathname === "/orders"}
-                        >
-                            Orders
-                        </Button>
-                        <Button
-                            color="inherit"
-                            component={Link}
-                            to="/dashboards"
-                            selected={location.pathname === "/dashboards"}
-                        >
-                            Dashboards
-                        </Button>
-                        <Button
-                            color="inherit"
-                            component={Link}
-                            to="/ai"
-                            selected={location.pathname === "/ai"}
-                        >
-                            AI
-                        </Button>
-                        {/*<Button*/}
-                        {/*    color="inherit"*/}
-                        {/*    component={Link}*/}
-                        {/*    to="/profile"*/}
-                        {/*    selected={location.pathname === "/profile"}*/}
-                        {/*>*/}
-                        {/*    profile*/}
-                        {/*</Button>*/}
+            <AppBar position="static" sx={{ boxShadow: "none", backgroundColor: "#1c1c1e" }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 20px" }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                        <img src="ld-icon.png" alt="logo" style={{ maxWidth: "30px", height: 'auto' }} />
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: "#fff" }}>
+                            LD Commerce Demo
+                        </Typography>
                     </Box>
-                    <Box>
-                        <UserSwitcher currUser={currUser} setCurrUser={setCurrUser} />
-                        {/*<Button*/}
-                        {/*    edge="end"*/}
-                        {/*    color="inherit"*/}
-                        {/*    aria-label="menu"*/}
-                        {/*    onClick={toggleDrawer}*/}
-                        {/*    align="right"*/}
-                        {/*    setCurrUser={setCurrUser}*/}
-
-                        {/*>*/}
-                        {/*    Change User*/}
-                        {/*</Button>*/}
+                    <Box sx={{ display: "flex", gap: 3 }}>
+                        <IconButton color="inherit" onClick={onOpenModal}>
+                            <InfoOutlinedIcon />
+                        </IconButton>
+                    </Box>
+                </Box>
+                <Toolbar sx={{ display: "flex", justifyContent: "space-between", padding: "0 20px" }}>
+                    <Box sx={{ display: "flex", gap: 3 }}>
+                        {tabs.map((tab, index) => (
+                            <Button
+                                key={index}
+                                color="inherit"
+                                component={Link}
+                                to={tab.route}
+                                sx={{
+                                    textTransform: "none",
+                                    fontWeight: location.pathname === tab.route ? "bold" : "normal",
+                                    color: location.pathname === tab.route ? "#76c7c0" : "white",
+                                    "&:hover": {
+                                        backgroundColor: "rgba(118, 199, 192, 0.2)",
+                                    },
+                                }}
+                            >
+                                {tab.label}
+                            </Button>
+                        ))}
+                    </Box>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <UserSwitcher users={users} setUsers={setUsers} currUser={currUser} setCurrUser={setCurrUser} />
+                        <IconButton color="inherit" onClick={toggleDrawer} sx={{ marginLeft: 2 }}>
+                            <SettingsIcon />
+                        </IconButton>
                     </Box>
                 </Toolbar>
+                <SettingsDrawer
+                    open={openDrawer}
+                    onClose={toggleDrawer}
+                    currUser={currUser}
+                    setCurrUser={setCurrUser}
+                    setUsers={setUsers}
+                />
             </AppBar>
-            <UserDrawer toggleDrawer={toggleDrawer} openDrawer={openDrawer} setCurrUser={setCurrUser}/>
         </React.Fragment>
     );
 };
 
-export default NavBar
+export default NavBar;

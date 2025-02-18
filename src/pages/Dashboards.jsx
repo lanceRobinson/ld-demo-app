@@ -1,15 +1,16 @@
 // Dashboards.js
 import React from 'react';
 import { withLDConsumer } from 'launchdarkly-react-client-sdk';
-import {Alert} from "@mui/material";
+import {Alert, Box} from "@mui/material";
+import PageWrapper from "./components/PageWrapper";
 
 const Dashboards = ({ flags }) => {
     console.log('flags.dashboardAccess', flags.dashboardAccess)
     return (flags.dashboardAccess ?
-        <div>
-            <h1>Standard Dashboard</h1>
+
+            <PageWrapper title={"Dashboard"}>
             <img src="/dashboards.png" alt="dashboards" width={'100%'}/>
-        </div>
+        </PageWrapper>
         :
             <Alert severity="warning">This feature is only available for Premium members...</Alert>
 

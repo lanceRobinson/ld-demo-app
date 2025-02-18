@@ -19,7 +19,8 @@
       "name": "Leo da Vinci",
       "email": "leodavinci@email.com",
       "key": "leodavinci",
-      "tier": "Premium"
+      "tier": "Premium",
+      "country": "Italy"
     },
     {
       "kind": "user",

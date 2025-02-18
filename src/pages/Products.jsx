@@ -1,11 +1,11 @@
 import React from 'react';
+import PageWrapper from "./components/PageWrapper";
 
 const Products = () => {
     return (
-        <div>
-            <h1>Products</h1>
+        <PageWrapper title={"Products"}>
             <img src="/products.png" alt="products" width={'100%'}/>
-        </div>
+        </PageWrapper>
     )
 
 }

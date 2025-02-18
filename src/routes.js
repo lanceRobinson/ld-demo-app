@@ -4,13 +4,14 @@ import Profile from './pages/Profile';
 import Orders from "./pages/Orders";
 import Products from "./pages/Products";
 import Ai from "./pages/Ai";
+import Analytics from "./pages/Analytics";
 
 const routes = [
-    { path: '/', component: <Home />, exact: true },
-    { path: '/dashboards', component: <Dashboards /> },
+    { path: '/', component: <Dashboards />, exact: true },
     { path: '/profile', component: <Profile /> },
     { path: '/products', component: <Products /> },
     { path: '/orders', component: <Orders /> },
+    { path: '/analytics', component: <Analytics /> },
     { path: '/ai', component: <Ai /> },
 ];
 

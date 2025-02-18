@@ -3,17 +3,19 @@ import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 import { useLDClient } from "launchdarkly-react-client-sdk";
 import demo_data from "../../demo_data.json"
 
-const users = demo_data.users;
 
 
 
-const UserSwitcher = ({currUser, setCurrUser}) => {
+
+const UserSwitcher = ({users, currUser, setCurrUser}) => {
+    const [selectedUser, setSelectedUser] = useState(currUser);
 
     const ldClient = useLDClient();
 
     const handleUserChange = (event) => {
         const newUser = users.find((user) => user.key === event.target.value);
         setCurrUser(newUser)
+        setSelectedUser(newUser);
 
         // Update LaunchDarkly context
         if (ldClient) {
@@ -22,9 +24,10 @@ const UserSwitcher = ({currUser, setCurrUser}) => {
     };
 
     return (
-        <FormControl fullWidth>
+        <FormControl fullWidth variant="outlined">
             <InputLabel sx={{ color: "white" }}>Logged in as:</InputLabel>
             <Select value={currUser.key}
+                    label="Logged in as:"
                     onChange={handleUserChange}
                     sx={{
                         color: "white", // Text color
@@ -39,6 +42,7 @@ const UserSwitcher = ({currUser, setCurrUser}) => {
                         {user.name} ({user.tier} Tier)
                     </MenuItem>
                 ))}
+
             </Select>
         </FormControl>
     );
