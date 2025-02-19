@@ -1,6 +1,5 @@
 import React from 'react';
 import { withLDConsumer } from 'launchdarkly-react-client-sdk';
-import {Alert, Typography} from "@mui/material";
 import NoAccess from "./NoAccess";
 import PageWrapper from "./components/PageWrapper";
 

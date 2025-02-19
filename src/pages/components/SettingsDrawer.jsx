@@ -33,10 +33,11 @@ const SettingsDrawer = ({ open, onClose, currUser, setUsers, user, setCurrUser }
 
         setEditedUser(updatedUser);
 
+        //TODO: Add tracking on opt ins.  This is a problem for future me.
         // Fire a custom event when user opts in.
-        if (isOptedIn && ldClient) {
-            ldClient.track("aiBetaOptIn", { userKey: updatedUser.key });
-        }
+        // if (isOptedIn && ldClient) {
+        //     ldClient.track("aiBetaOptIn", { userKey: updatedUser.key });
+        // }
     };
 
     const updateUserContext = (updatedUser) => {
