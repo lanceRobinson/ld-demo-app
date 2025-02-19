@@ -1,18 +1,20 @@
 // Dashboards.js
 import React from 'react';
-import { withLDConsumer } from 'launchdarkly-react-client-sdk';
+import {withLDConsumer} from 'launchdarkly-react-client-sdk';
 import {Alert, Box} from "@mui/material";
 import PageWrapper from "./components/PageWrapper";
 
-const Dashboards = ({ flags }) => {
-    console.log('flags.dashboardAccess', flags.dashboardAccess)
-    return (flags.dashboardAccess ?
+const Dashboards = ({flags}) => {
+    console.log('flags.betaDashboard', flags.betaDashboard)
+    return (
 
-            <PageWrapper title={"Dashboard"}>
-            <img src="/dashboards.png" alt="dashboards" width={'100%'}/>
+        <PageWrapper title={"Dashboard"}>
+            {flags.betaDashboard ?
+                <img src="/dashboard-beta.png" alt="beta-dashboards" width={'100%'}/> :
+                <img src="/dashboards.png" alt="dashboards" width={'100%'}/>
+
+            }
         </PageWrapper>
-        :
-            <Alert severity="warning">This feature is only available for Premium members...</Alert>
 
     )
 }

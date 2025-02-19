@@ -25,10 +25,18 @@ const SettingsDrawer = ({ open, onClose, currUser, setUsers, user, setCurrUser }
 
     // Handle the toggle switch change for "Opt In for AI Beta"
     const handleToggleChange = (event) => {
-        setEditedUser({
+        const isOptedIn = event.target.checked;
+        const updatedUser = {
             ...editedUser,
-            [event.target.name]: event.target.checked,
-        });
+            [event.target.name]: isOptedIn,
+        };
+
+        setEditedUser(updatedUser);
+
+        // Fire a custom event when user opts in.
+        if (isOptedIn && ldClient) {
+            ldClient.track("aiBetaOptIn", { userKey: updatedUser.key });
+        }
     };
 
     const updateUserContext = (updatedUser) => {

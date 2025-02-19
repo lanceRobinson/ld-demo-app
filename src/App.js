@@ -9,16 +9,15 @@ import Footer from "./Footer";
 import demo_data from "./demo_data.json"
 import {useState} from "react";
 import DemoModal from "./pages/components/DemoModal";
-const defaultUser = demo_data.users[0]
+
+const randomUser = Math.floor(Math.random() * 4)
+const defaultUser = demo_data.users[randomUser]
 
 function App() {
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(true);
     const [users, setUsers] = useState(demo_data.users);
     const [currUser, setCurrUser] = useState(defaultUser);
 
-    const handleCloseModal = () => {
-        setModalOpen(false);
-    };
 
     const handleOpenModal = () => {
         setModalOpen(true);
@@ -26,7 +25,10 @@ function App() {
 
     return (
       <Router>
-          <DemoModal open={modalOpen} onClose={handleCloseModal} />
+          <DemoModal
+              open={modalOpen}
+              setModalOpen={setModalOpen}
+              />
         <NavBar
             users={users}
             setUsers={setUsers}
