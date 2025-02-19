@@ -26,15 +26,6 @@ This project is a React-based demo application that demonstrates the integration
 
 
 ## Features
-**Included Launchdarkly tools:**
-Flags
-- User Level Rules
-- Segment Level Rules
-Segments
-Contexts
-Streaming changes
-Metrics
-Experiments
 
 **User Switcher:**  
   Switch between predefined user profiles loaded from a JSON file. When a user is selected, the LaunchDarkly context is updated in real time using `ldClient.identify()`. Certain features are available only to specific segments—configured in LaunchDarkly based on subscription tiers. For example, users with a "premium" subscription may have access to additional features that are hidden from free users.
