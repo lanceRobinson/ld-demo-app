@@ -70,7 +70,7 @@ The modal includes two buttons—"This is helpful" and "Not helpful." Clicking o
 Use this feedback to evaluate which modal variant offers a better user experience.
 
 **Real-Time Updates:**  
-Thanks to LaunchDarkly’s streaming mode, any changes made via the LaunchDarkly dashboard (e.g., toggling feature flags such as `beta-dashboard`) are applied immediately without requiring a page reload.
+Thanks to LaunchDarkly’s streaming mode, any changes to the users context or changes made via the LaunchDarkly dashboard (e.g., toggling feature flags such as `beta-dashboard`) are applied immediately without requiring a page reload.
 
 **Segment-Based Feature Access:**  
 The app is configured to use specific segments (Business Tier and Premium Tier). Certain features (like `order-access` and `analytics-access`) will only be available based on the user's subscription tier as defined in LaunchDarkly.

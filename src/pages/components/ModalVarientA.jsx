@@ -7,13 +7,20 @@ const ModalVariantA = () => {
             <DialogTitle>Welcome to the LaunchDarkly Demo App</DialogTitle>
             <DialogContent dividers>
                 <Typography variant="body1" gutterBottom>
-                    This demo app is built with React, Material UI, and LaunchDarkly for feature flagging.
+                    This demo app is powered by LaunchDarkly, showcasing dynamic feature flagging,
+                    real-time context management, and targeted feature rollouts.
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                    Explore how feature flags allow you to control new features and manage rollouts safely.
+                    <strong>User Switcher:</strong> Switch between predefined user profiles with automatic context updates.
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                    <strong>Real-Time Streaming:</strong> Instantaneous flag updates allow features like the beta dashboard to be released immediately without a page reload.
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                    <strong>Settings Drawer:</strong> View user details and enable new features (e.g., the new AI feature) in real time.
                 </Typography>
                 <Typography variant="body1">
-                    Use the navigation bar to switch users and open settings to see dynamic context updates.
+                    <strong>Demo Modal Experiment:</strong> Participate in an A/B test with two modal variants to help determine the best user experience.
                 </Typography>
             </DialogContent>
         </>
